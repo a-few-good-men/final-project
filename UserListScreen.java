@@ -10,18 +10,18 @@ import javax.swing.table.DefaultTableModel;
 public class UserListScreen extends javax.swing.JFrame {
 
     User loggedInUser;
-    
+//------------------------------------------------------------------------------    
     public UserListScreen(User user) {
         loggedInUser=user;
         initComponents();      
         
         initTable();
     }
-
+//------------------------------------------------------------------------------
     private UserListScreen() {
         initComponents(); 
     }
-
+//------------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -146,29 +146,29 @@ public class UserListScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//------------------------------------------------------------------------------
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
         
     }//GEN-LAST:event_searchInputActionPerformed
-
+//------------------------------------------------------------------------------
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
        AdminScreen adminScreen = new AdminScreen(loggedInUser);
        
        this.setVisible(false);
        adminScreen.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
-
+//------------------------------------------------------------------------------
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
         AddUser userScreen = new AddUser(loggedInUser);
         
         this.setVisible(false);
         userScreen.setVisible(true);
     }//GEN-LAST:event_addUserButtonActionPerformed
-
+//------------------------------------------------------------------------------
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         editButton.setEnabled(true);
     }//GEN-LAST:event_tableMouseClicked
-
+//------------------------------------------------------------------------------
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         
         EditUser editUser   =   new EditUser(loggedInUser, table.getSelectedRow());
@@ -178,7 +178,7 @@ public class UserListScreen extends javax.swing.JFrame {
                
         System.out.println();
     }//GEN-LAST:event_editButtonActionPerformed
-
+//------------------------------------------------------------------------------
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -202,7 +202,22 @@ public class UserListScreen extends javax.swing.JFrame {
             }
         });
     }
-
+//------------------------------------------------------------------------------
+        private void initTable() {     
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        Object[] row;
+        for (User u : mainScreen.userList) {
+            row=convert(u);     
+            model.addRow(row);
+        }
+        table.setModel(model);
+    }
+//------------------------------------------------------------------------------
+    private Object[] convert(User u){     
+        Object[] row = { u.username, u.secLevel};
+        
+        return row;       
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;
     private javax.swing.JButton backButton;
@@ -213,21 +228,5 @@ public class UserListScreen extends javax.swing.JFrame {
     private javax.swing.JTextField searchInput;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-
-    private void initTable() {     
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Object[] row;
-        for (User u : mainScreen.userList) {
-            row=convert(u);     
-            model.addRow(row);
-        }
-        table.setModel(model);
-    }
-
-    private Object[] convert(User u){     
-        Object[] row = { u.username, u.secLevel};
-        
-        return row;       
-    }
 
 }

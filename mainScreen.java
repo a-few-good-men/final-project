@@ -10,26 +10,23 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class mainScreen {
     @SuppressWarnings("unchecked")
     public static ArrayList<User> userList          = new ArrayList<User>();
     public static ArrayList<Patient> patientList    = new ArrayList<Patient>();
-    
+//------------------------------------------------------------------------------    
     public static void main(String[] args) throws ClassNotFoundException, IOException {
-            
-            
+
             Login screen = new Login();
             screen.setVisible(true);
             
             //createList();
             initUserList();
             initPatientList();    
-            
-            
+          
     }
-@SuppressWarnings("unchecked")
-
+//------------------------------------------------------------------------------
+    @SuppressWarnings("unchecked")
     private static void initUserList() {
             
             
@@ -54,10 +51,10 @@ public class mainScreen {
             }
         }
     }
+//------------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
-        private static void initPatientList() {
-            
-            
+    private static void initPatientList() {
+
             FileInputStream fis = null;
         try {
             fis = new FileInputStream("patients.l");
@@ -79,7 +76,7 @@ public class mainScreen {
             }
         }
     }
-
+//------------------------------------------------------------------------------
     private static void saveList()  {
             FileOutputStream fos = null;
         try {
@@ -99,17 +96,13 @@ public class mainScreen {
             }
         }
     }
-
+//------------------------------------------------------------------------------
     private static void createList() {
-        User admin = new User("admin","1","Admin");
-        User nurse = new User("nurse","1","Employee");
+        User admin = new User("admin","pass","Admin");
         
         userList.add(admin);
-        userList.add(nurse);
         
         saveList();
     }
-    
-    
-    
+//------------------------------------------------------------------------------       
 }

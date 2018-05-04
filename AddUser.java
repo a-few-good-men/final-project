@@ -9,18 +9,17 @@ import java.util.logging.Logger;
 import static pkgfinal.mainScreen.userList;
 
 public class AddUser extends javax.swing.JFrame {
-
-    
+  
     User loggedInUser;
     public AddUser() {
         initComponents();
     }
-
+//------------------------------------------------------------------------------
     AddUser(User user) {
         loggedInUser=user;
         initComponents();  
     }
-
+//------------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -112,13 +111,13 @@ public class AddUser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//------------------------------------------------------------------------------
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         UserListScreen userListScreen = new UserListScreen(loggedInUser);
         userListScreen.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
-
+//------------------------------------------------------------------------------
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         String username;
         String pass;
@@ -137,7 +136,7 @@ public class AddUser extends javax.swing.JFrame {
         
         backButtonActionPerformed(evt);
     }//GEN-LAST:event_saveButtonActionPerformed
-
+//------------------------------------------------------------------------------
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -155,17 +154,13 @@ public class AddUser extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddUser().setVisible(true);
             }
         });
     }
-    
+//------------------------------------------------------------------------------    
     private static void saveList()  {
             FileOutputStream fos = null;
         try {
@@ -185,7 +180,7 @@ public class AddUser extends javax.swing.JFrame {
             }
         }
     }
-
+//------------------------------------------------------------------------------
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JPanel jPanel1;

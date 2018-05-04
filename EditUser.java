@@ -31,6 +31,7 @@ public class EditUser extends javax.swing.JFrame {
     public EditUser(User user, int index) {
         initComponents();
         
+        
         loggedInUser = user;
         i = index; 
         
@@ -40,6 +41,14 @@ public class EditUser extends javax.swing.JFrame {
         
         username    =   userList.get(i).username;
         pass        =   userList.get(i).password;
+        
+        if(username.equalsIgnoreCase("Admin"))
+        {
+            userInput.setEditable(false);
+            secBox.setEnabled(false);
+            delButton.setEnabled(false);
+        }
+        
         
         userInput.setText(username);
         passInput.setText(pass);
