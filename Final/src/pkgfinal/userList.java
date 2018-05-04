@@ -139,7 +139,7 @@ public class userList extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
-        AddPatient patientScreen = new AddPatient(loggedInUser);
+        addPatient patientScreen = new addPatient(loggedInUser);
         
         this.setVisible(false);
         patientScreen.setVisible(true);

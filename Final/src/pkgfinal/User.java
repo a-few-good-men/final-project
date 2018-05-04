@@ -1,7 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pkgfinal;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Lauren Sage
+ */
 public class User implements Serializable{
     String username;
     String password;
@@ -38,7 +47,9 @@ public class User implements Serializable{
 
     public void setSecLevel(String secLevel) {
         this.secLevel = secLevel;
-    } 
+    }
+    
+  
 }
 
 

@@ -7,7 +7,7 @@ public class Login extends javax.swing.JFrame {
 
     public static User loggedInUser;
     boolean logIn;
-    PatientListScreen listScreen;
+    PatientList listScreen;
     public Login() {
         initComponents();
     }
@@ -35,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         pWord_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pWord_Lbl.setText("Password: ");
 
-        uNameInput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        uNameInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         uNameInput.setMinimumSize(new java.awt.Dimension(6, 20));
         uNameInput.setPreferredSize(new java.awt.Dimension(6, 20));
         uNameInput.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(uNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(uName_Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -114,7 +114,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,7 +133,7 @@ public class Login extends javax.swing.JFrame {
         
            if(logIn)
            {
-               listScreen=new PatientListScreen(loggedInUser);
+               listScreen=new PatientList(loggedInUser);
                listScreen.setVisible(true);              
                this.setVisible(false);
            }
