@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 
 public class mainScreen {
     @SuppressWarnings("unchecked")
-    public static ArrayList<User> userList = new ArrayList<User>();
-    
+    public static ArrayList<User> userList          = new ArrayList<User>();
+    public static ArrayList<Patient> patientList    = new ArrayList<Patient>();
     
     public static void main(String[] args) throws ClassNotFoundException, IOException {
             
@@ -22,15 +22,15 @@ public class mainScreen {
             Login screen = new Login();
             screen.setVisible(true);
             
-            createList();
-            initList();
-            saveList();    
+            //createList();
+            initUserList();
+            initPatientList();    
             
             
     }
 @SuppressWarnings("unchecked")
 
-    private static void initList() {
+    private static void initUserList() {
             
             
             FileInputStream fis = null;
@@ -39,6 +39,31 @@ public class mainScreen {
             ObjectInputStream ois = new ObjectInputStream(fis);
             
             userList = (ArrayList<User>) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    @SuppressWarnings("unchecked")
+        private static void initPatientList() {
+            
+            
+            FileInputStream fis = null;
+        try {
+            fis = new FileInputStream("patients.l");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            patientList = (ArrayList<Patient>) ois.readObject();
             ois.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,12 +101,15 @@ public class mainScreen {
     }
 
     private static void createList() {
-        User admin = new User("admin","1","A");
-        User nurse = new User("nurse","1","E");
+        User admin = new User("admin","1","Admin");
+        User nurse = new User("nurse","1","Employee");
         
         userList.add(admin);
         userList.add(nurse);
         
         saveList();
-    }  
+    }
+    
+    
+    
 }
