@@ -459,7 +459,10 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="imageLabel" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="imageLabel" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="notesButton" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -527,9 +530,13 @@
                                           <Component id="cellInput" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="imageLabel" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="imageLabel" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="notesButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="insuranceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="insuranceInput" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -681,6 +688,11 @@
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Patient Since:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="notesButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Notes"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="cellLabel">

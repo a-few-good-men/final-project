@@ -85,7 +85,7 @@ public class UserListScreen extends javax.swing.JFrame {
             }
         });
 
-        editButton.setText("Edit Employee");
+        editButton.setText("Edit User");
         editButton.setEnabled(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,8 +175,6 @@ public class UserListScreen extends javax.swing.JFrame {
         
         editUser.setVisible(true);
         this.setVisible(false);
-               
-        System.out.println();
     }//GEN-LAST:event_editButtonActionPerformed
 //------------------------------------------------------------------------------
     public static void main(String args[]) {

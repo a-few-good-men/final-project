@@ -34,7 +34,7 @@ public class PatientListScreen extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         addPatientButton = new javax.swing.JButton();
         adminButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
+        viewButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +49,11 @@ public class PatientListScreen extends javax.swing.JFrame {
                 "Patient ID", "Name", "Last Visit", "Patient Since", "Assigned Physician"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         scrollPane.setViewportView(table);
 
         searchButton.setText("Search");
@@ -80,7 +85,13 @@ public class PatientListScreen extends javax.swing.JFrame {
             }
         });
 
-        editButton.setText("Edit Patient");
+        viewButton.setText("View Patient");
+        viewButton.setEnabled(false);
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,7 +105,7 @@ public class PatientListScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(adminButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editButton))
+                        .addComponent(viewButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,7 +129,7 @@ public class PatientListScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(adminButton)
-                    .addComponent(editButton))
+                    .addComponent(viewButton))
                 .addContainerGap())
         );
 
@@ -164,6 +175,17 @@ public class PatientListScreen extends javax.swing.JFrame {
         this.setVisible(false);
         adminScreen.setVisible(true);
     }//GEN-LAST:event_adminButtonActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        viewButton.setEnabled(true);
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        ViewPatient viewPatient   =   new ViewPatient(loggedInUser, table.getSelectedRow());
+
+        viewPatient.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,11 +233,11 @@ public class PatientListScreen extends javax.swing.JFrame {
     private javax.swing.JButton addPatientButton;
     private javax.swing.JButton adminButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton editButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTable table;
+    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

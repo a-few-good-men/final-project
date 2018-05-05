@@ -9,16 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static pkgFinal.mainScreen.patientList;
 
-public class AddPatient extends javax.swing.JFrame {
+public class EditPatient extends javax.swing.JFrame {
 
     User loggedInUser;
 //------------------------------------------------------------------------------    
-    public AddPatient(User user) {
-        loggedInUser = user;
-        initComponents();
-    }
 //------------------------------------------------------------------------------
-    private AddPatient() {
+    private EditPatient() {
         initComponents();
     }
 //------------------------------------------------------------------------------
@@ -67,6 +63,7 @@ public class AddPatient extends javax.swing.JFrame {
         workInput = new javax.swing.JFormattedTextField();
         dobInput = new javax.swing.JFormattedTextField();
         patientSinceLabel = new javax.swing.JLabel();
+        notesButton = new javax.swing.JToggleButton();
         cellLabel = new javax.swing.JLabel();
         planLabel = new javax.swing.JLabel();
         planInput = new javax.swing.JTextField();
@@ -391,6 +388,8 @@ public class AddPatient extends javax.swing.JFrame {
         patientSinceLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         patientSinceLabel.setText("Patient Since:");
 
+        notesButton.setText("Notes");
+
         cellLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cellLabel.setText("Cell:");
 
@@ -450,7 +449,9 @@ public class AddPatient extends javax.swing.JFrame {
                                     .addComponent(workInput)
                                     .addComponent(cellInput))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(notesButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,8 +501,11 @@ public class AddPatient extends javax.swing.JFrame {
                                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cellLabel)
                                     .addComponent(cellInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                            .addGroup(rightPanelLayout.createSequentialGroup()
+                                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(notesButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(insuranceLabel)
                             .addComponent(insuranceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -608,22 +612,7 @@ public class AddPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 //------------------------------------------------------------------------------
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        Patient p;
-        
-        p = new Patient(fNameInput.getText(),lNameInput.getText(), homeInput.getText(), 
-                workInput.getText(),cellInput.getText(),addressInput.getText(),cityInput.getText(),
-                stateInput.getText(),zipInput.getText(),dobInput.getText(),patientSinceInput.getText(),
-                insuranceInput.getText(),planInput.getText(),drBox.getSelectedItem().toString(),
-                emailInput.getText(),contactNameInput.getText(),contactPhoneInput.getText(),relationshipInput.getText(),
-                genderBox.getSelectedItem().toString(), ssInput.getText(),Integer.toString(patientList.size()+1000),patientSinceInput.getText());
 
-        patientList.add(p);
-        saveList();
-        
-        PatientListScreen patientScreen = new PatientListScreen(loggedInUser); 
-        
-        this.setVisible(false);
-        patientScreen.setVisible(true);
         
     }//GEN-LAST:event_saveButtonActionPerformed
 //------------------------------------------------------------------------------
@@ -641,14 +630,18 @@ public class AddPatient extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -657,7 +650,7 @@ public class AddPatient extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPatient().setVisible(true);
+                new EditPatient().setVisible(true);
             }
         });
     }
@@ -717,6 +710,7 @@ public class AddPatient extends javax.swing.JFrame {
     private javax.swing.JLabel lNameLabel;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JToggleButton notesButton;
     private javax.swing.JFormattedTextField patientSinceInput;
     private javax.swing.JLabel patientSinceLabel;
     private javax.swing.JTextField planInput;
