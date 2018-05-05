@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pkgfinal;
+package pkgFinal;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,8 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static pkgfinal.mainScreen.patientList;
-import static pkgfinal.mainScreen.userList;
+import static pkgFinal.mainScreen.patientList;
 
 public class AddPatient extends javax.swing.JFrame {
 
@@ -662,6 +657,8 @@ public class AddPatient extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -1,7 +1,8 @@
-package pkgfinal;
+package pkgFinal;
+
 
 import javax.swing.JOptionPane;
-import static pkgfinal.mainScreen.userList;
+import static pkgFinal.mainScreen.userList;
 
 public class Login extends javax.swing.JFrame {
 

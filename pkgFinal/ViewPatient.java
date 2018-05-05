@@ -1,4 +1,4 @@
-package pkgfinal;
+package pkgFinal;
 
 public class ViewPatient extends javax.swing.JFrame {
 

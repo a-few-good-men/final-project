@@ -54,10 +54,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="secBox" pref="132" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="userInput" max="32767" attributes="0"/>
-                          <Component id="passInput" pref="132" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="userInput" max="32767" attributes="0"/>
+                      <Component id="passInput" pref="132" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="71" max="32767" attributes="0"/>
               </Group>
