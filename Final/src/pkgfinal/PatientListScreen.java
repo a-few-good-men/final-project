@@ -1,7 +1,9 @@
-package pkgfinal;
+package pkgFinal;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static pkgfinal.mainScreen.patientList;
+import static pkgFinal.mainScreen.patientList;
 
 public class PatientListScreen extends javax.swing.JFrame {
 
@@ -15,8 +17,6 @@ public class PatientListScreen extends javax.swing.JFrame {
 //------------------------------------------------------------------------------
     private PatientListScreen() {
         initComponents();
-        
-        table.
     }
 
     /**
@@ -36,6 +36,7 @@ public class PatientListScreen extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         addPatientButton = new javax.swing.JButton();
         adminButton = new javax.swing.JButton();
+        viewButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,9 +51,19 @@ public class PatientListScreen extends javax.swing.JFrame {
                 "Patient ID", "Name", "Last Visit", "Patient Since", "Assigned Physician"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         scrollPane.setViewportView(table);
 
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,25 +92,34 @@ public class PatientListScreen extends javax.swing.JFrame {
             }
         });
 
+        viewButton.setText("View Patient");
+        viewButton.setEnabled(false);
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adminButton))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(searchButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addPatientButton))
-                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(adminButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addPatientButton))
+                    .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,7 +135,8 @@ public class PatientListScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
-                    .addComponent(adminButton))
+                    .addComponent(adminButton)
+                    .addComponent(viewButton))
                 .addContainerGap())
         );
 
@@ -162,6 +183,42 @@ public class PatientListScreen extends javax.swing.JFrame {
         adminScreen.setVisible(true);
     }//GEN-LAST:event_adminButtonActionPerformed
 
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        viewButton.setEnabled(true);
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        ViewPatient viewPatient   =   new ViewPatient(loggedInUser, table.getSelectedRow());
+
+        viewPatient.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        ArrayList<Patient> searchList = new ArrayList<Patient>();            
+        patientSearchResults searchScreen;
+        
+        for(Patient p: patientList)
+        {
+            if(p.fName.contains(searchInput.getText()) 
+                || p.lName.contains(searchInput.getText()) 
+                || p.id.contains(searchInput.getText()))
+            {
+                searchList.add(p);
+            }       
+        }
+
+        if(searchList.isEmpty())
+            JOptionPane.showMessageDialog(this, "No results found");
+        else
+        {
+            searchScreen = new patientSearchResults(loggedInUser, searchList);
+            searchScreen.setVisible(true);
+        }
+            
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,7 +257,7 @@ public class PatientListScreen extends javax.swing.JFrame {
     }
 //------------------------------------------------------------------------------
     private Object[] convert(Patient p){     
-        Object[] row = { p.id, p.fName+p.lName,p.lastVisit,p.patSince,p.doctor};
+        Object[] row = { p.id, p.fName+" "+p.lName,p.lastVisit,p.patSince,p.doctor};
         
         return row;       
     }
@@ -213,5 +270,6 @@ public class PatientListScreen extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTable table;
+    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,4 +1,4 @@
-package pkgfinal;
+package pkgFinal;
 
 import java.io.Serializable;
 

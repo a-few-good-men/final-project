@@ -1,4 +1,4 @@
-package pkgfinal;
+package pkgFinal;
 
 public class AdminScreen extends javax.swing.JFrame {
 

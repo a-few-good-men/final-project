@@ -1,11 +1,15 @@
+package pkgFinal;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkgfinal;
-
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static pkgFinal.mainScreen.patientList;
+import static pkgFinal.mainScreen.userList;
 
 public class UserListScreen extends javax.swing.JFrame {
 
@@ -64,6 +68,11 @@ public class UserListScreen extends javax.swing.JFrame {
         scrollPane.setViewportView(table);
 
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +94,7 @@ public class UserListScreen extends javax.swing.JFrame {
             }
         });
 
-        editButton.setText("Edit Employee");
+        editButton.setText("Edit User");
         editButton.setEnabled(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,9 +184,28 @@ public class UserListScreen extends javax.swing.JFrame {
         
         editUser.setVisible(true);
         this.setVisible(false);
-               
-        System.out.println();
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+              ArrayList<User> searchList = new ArrayList<User>();            
+        userSearchResults searchScreen;
+        
+        for(User u: userList)
+        {
+            if(u.username.contains(searchInput.getText()) )
+            {
+                searchList.add(u);
+            }       
+        }
+
+        if(searchList.isEmpty())
+            JOptionPane.showMessageDialog(this, "No results found");
+        else
+        {
+            searchScreen = new userSearchResults(loggedInUser, searchList);
+            searchScreen.setVisible(true);
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
 //------------------------------------------------------------------------------
     public static void main(String args[]) {
         try {
