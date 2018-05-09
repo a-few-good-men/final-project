@@ -167,7 +167,7 @@ public class EditUser extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        NotesListScreen userListScreen = new NotesListScreen(loggedInUser);
+        UserListScreen userListScreen = new UserListScreen(loggedInUser);
         userListScreen.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed

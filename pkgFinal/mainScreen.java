@@ -14,6 +14,7 @@ public class mainScreen {
     @SuppressWarnings("unchecked")
     public static ArrayList<User> userList          = new ArrayList<User>();
     public static ArrayList<Patient> patientList    = new ArrayList<Patient>();
+    public static ArrayList<Note> noteList          = new ArrayList<Note>();
 //------------------------------------------------------------------------------    
     public static void main(String[] args) throws ClassNotFoundException, IOException {
 
@@ -22,8 +23,8 @@ public class mainScreen {
             
             //createList();
             initUserList();
-            initPatientList();    
-          
+            initPatientList();   
+            initNoteList();        
     }
 //------------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
@@ -61,6 +62,31 @@ public class mainScreen {
             ObjectInputStream ois = new ObjectInputStream(fis);
             
             patientList = (ArrayList<Patient>) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+//------------------------------------------------------------------------------
+        @SuppressWarnings("unchecked")
+    private static void initNoteList() {
+
+            FileInputStream fis = null;
+        try {
+            fis = new FileInputStream("notes.l");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            noteList = (ArrayList<Note>) ois.readObject();
             ois.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);

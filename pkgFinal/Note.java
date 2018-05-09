@@ -6,5 +6,7 @@
 package pkgFinal;
 
 public class Note {
-    String 
+    String desc;
+    String date;
+    
 }

@@ -5,15 +5,18 @@
  */
 package pkgFinal;
 
+import static pkgFinal.mainScreen.noteList;
+
 /**
  *
  * @author laurensage
  */
 public class addNoteScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form addNoteScreen
-     */
+    
+    Note e;
+    User loggedInUser;
+    
     public addNoteScreen() {
         initComponents();
     }
@@ -89,7 +92,9 @@ public class addNoteScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+       e.desc=textInput.getText();
+      // e.date=System
+     //   noteList.add(e)
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
