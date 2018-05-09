@@ -100,7 +100,7 @@ public class AdminScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //------------------------------------------------------------------------------
     private void editUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserActionPerformed
-        UserListScreen userListScreen = new UserListScreen(loggedInUser);
+        NotesListScreen userListScreen = new NotesListScreen(loggedInUser);
         
         this.setVisible(false);
         userListScreen.setVisible(true);

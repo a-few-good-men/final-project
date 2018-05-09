@@ -5,20 +5,24 @@ package pkgFinal;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static pkgFinal.mainScreen.patientList;
+import static pkgFinal.mainScreen.userList;
 
-public class UserListScreen extends javax.swing.JFrame {
+public class NotesListScreen extends javax.swing.JFrame {
 
     User loggedInUser;
 //------------------------------------------------------------------------------    
-    public UserListScreen(User user) {
+    public NotesListScreen(User user) {
         loggedInUser=user;
         initComponents();      
         
         initTable();
     }
 //------------------------------------------------------------------------------
-    private UserListScreen() {
+    private NotesListScreen() {
         initComponents(); 
     }
 //------------------------------------------------------------------------------
@@ -29,10 +33,8 @@ public class UserListScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        searchButton = new javax.swing.JButton();
-        searchInput = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
-        addUserButton = new javax.swing.JButton();
+        addNoteButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,7 +47,7 @@ public class UserListScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Security Level"
+                "Date Created", "Desc"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -63,14 +65,6 @@ public class UserListScreen extends javax.swing.JFrame {
         });
         scrollPane.setViewportView(table);
 
-        searchButton.setText("Search");
-
-        searchInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchInputActionPerformed(evt);
-            }
-        });
-
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,14 +72,14 @@ public class UserListScreen extends javax.swing.JFrame {
             }
         });
 
-        addUserButton.setText("Add User");
-        addUserButton.addActionListener(new java.awt.event.ActionListener() {
+        addNoteButton.setText("Add Note");
+        addNoteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserButtonActionPerformed(evt);
+                addNoteButtonActionPerformed(evt);
             }
         });
 
-        editButton.setText("Edit User");
+        editButton.setText("Edit Note");
         editButton.setEnabled(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,13 +95,10 @@ public class UserListScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addUserButton))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(305, 305, 305)
+                                .addComponent(addNoteButton))
                             .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(17, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -120,10 +111,7 @@ public class UserListScreen extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchButton)
-                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addUserButton))
+                .addComponent(addNoteButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,11 +134,8 @@ public class UserListScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//------------------------------------------------------------------------------
-    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
-        
-    }//GEN-LAST:event_searchInputActionPerformed
-//------------------------------------------------------------------------------
+
+/------------------------------------------------------------------------------
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
        AdminScreen adminScreen = new AdminScreen(loggedInUser);
        
@@ -158,12 +143,12 @@ public class UserListScreen extends javax.swing.JFrame {
        adminScreen.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 //------------------------------------------------------------------------------
-    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+    private void addNoteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteButtonActionPerformed
         AddUser userScreen = new AddUser(loggedInUser);
         
         this.setVisible(false);
         userScreen.setVisible(true);
-    }//GEN-LAST:event_addUserButtonActionPerformed
+    }//GEN-LAST:event_addNoteButtonActionPerformed
 //------------------------------------------------------------------------------
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         editButton.setEnabled(true);
@@ -186,17 +171,17 @@ public class UserListScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotesListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotesListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotesListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotesListScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserListScreen().setVisible(true);
+                new NotesListScreen().setVisible(true);
             }
         });
     }
@@ -217,13 +202,11 @@ public class UserListScreen extends javax.swing.JFrame {
         return row;       
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addUserButton;
+    private javax.swing.JButton addNoteButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton editButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JTextField searchInput;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 

@@ -15,13 +15,13 @@ import javax.swing.table.DefaultTableModel;
 public class userSearchResults extends javax.swing.JFrame {
 
     User loggedInUser;
-    ArrayList<Patient> searchList;
+    ArrayList<User> searchList;
     
     public userSearchResults() {
         initComponents();
     }
 
-    userSearchResults(User user, ArrayList<Patient> list) {
+    userSearchResults(User user, ArrayList<User> list) {
         loggedInUser = user;
         searchList = list;
         
@@ -83,9 +83,9 @@ public class userSearchResults extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        ViewPatient viewPatient   =   new ViewPatient(loggedInUser, table.getSelectedRow());
+        EditUser editUser   =   new EditUser(loggedInUser, table.getSelectedRow());
 
-        viewPatient.setVisible(true);
+        editUser.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_viewButtonActionPerformed
 
@@ -138,16 +138,16 @@ public class userSearchResults extends javax.swing.JFrame {
         Object[] row;
         
         
-        for (Patient p : searchList) {
-            row=convert(p);     
+        for (User u : searchList) {
+            row=convert(u);     
             model.addRow(row);
         }
         
         table.setModel(model);
     }
     
-        private Object[] convert(Patient p){     
-        Object[] row = { p.id, p.fName+p.lName,p.lastVisit,p.patSince,p.doctor};
+        private Object[] convert(User u){     
+        Object[] row = { u.username, u.secLevel};
         
         return row;       
     }
