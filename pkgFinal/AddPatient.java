@@ -622,6 +622,7 @@ public class AddPatient extends javax.swing.JFrame {
         
         PatientListScreen patientScreen = new PatientListScreen(loggedInUser); 
         
+        saveList();
         this.setVisible(false);
         patientScreen.setVisible(true);
         

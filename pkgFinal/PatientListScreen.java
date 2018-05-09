@@ -1,5 +1,7 @@
 package pkgFinal;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static pkgFinal.mainScreen.patientList;
 
@@ -57,6 +59,11 @@ public class PatientListScreen extends javax.swing.JFrame {
         scrollPane.setViewportView(table);
 
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +194,31 @@ public class PatientListScreen extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_viewButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        ArrayList<Patient> searchList = new ArrayList<Patient>();            
+        patientSearchResults searchScreen;
+        
+        for(Patient p: patientList)
+        {
+            if(p.fName.contains(searchInput.getText()) 
+                || p.lName.contains(searchInput.getText()) 
+                || p.id.contains(searchInput.getText()))
+            {
+                searchList.add(p);
+            }       
+        }
+
+        if(searchList.isEmpty())
+            JOptionPane.showMessageDialog(this, "No results found");
+        else
+        {
+            searchScreen = new patientSearchResults(loggedInUser, searchList);
+            searchScreen.setVisible(true);
+        }
+            
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,7 +257,7 @@ public class PatientListScreen extends javax.swing.JFrame {
     }
 //------------------------------------------------------------------------------
     private Object[] convert(Patient p){     
-        Object[] row = { p.id, p.fName+p.lName,p.lastVisit,p.patSince,p.doctor};
+        Object[] row = { p.id, p.fName+" "+p.lName,p.lastVisit,p.patSince,p.doctor};
         
         return row;       
     }
